@@ -41,7 +41,7 @@ const Navbar: React.FC<{ cartItemCount: number }> = ({ cartItemCount }) => {
             : "text-gray-500"
         } hover:text-gray-900`}
       >
-        About Us
+        About
       </Link>
       <Link
         to="/contact"
@@ -51,7 +51,7 @@ const Navbar: React.FC<{ cartItemCount: number }> = ({ cartItemCount }) => {
             : "text-gray-500"
         } hover:text-gray-900`}
       >
-        Contact Us
+        Contact
       </Link>
       <Link
         to="/dashboard"
