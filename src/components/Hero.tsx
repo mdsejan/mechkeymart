@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
           />
         </div>
         <div className="w-full lg:w-7/12 lg:pl-8">
-          <h1 className="text-4xl xl:text-7xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-5xl xl:text-7xl font-bold text-gray-900 mb-4">
             Elevate Your Typing Experience
           </h1>
           <p className="text-lg text-gray-600 mb-8">
