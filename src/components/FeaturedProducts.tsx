@@ -98,13 +98,13 @@ const FeaturedProducts: React.FC = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between"
+            className="productcard  border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between"
           >
             <div className="p-4">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-auto mb-4"
+                className="w-full h-auto mb-4 overflow-hidden"
               />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {product.name}
