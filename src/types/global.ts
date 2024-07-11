@@ -13,9 +13,27 @@ export interface Brand {
   title: string;
 }
 
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  brand: string;
+  description: string;
+  quantity: number;
+  rating: number;
+  image: string;
+}
+
 export interface TestimonialCardProps {
   image: string;
   text: string;
   name: string;
   company: string;
+}
+
+export interface ProductModalProps {
+  title: string;
+  product: Product | null;
+  onSave: (product: Product) => void;
+  onClose: () => void;
 }

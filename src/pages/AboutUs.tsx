@@ -4,7 +4,7 @@ const AboutUs = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
-            About MechKeyMart
+            About Mech<span className="text-blue-500">Key</span>Mart
           </h2>
           <p className="text-lg text-gray-700 mb-8">
             MechKeyMart is your ultimate destination for premium mechanical
