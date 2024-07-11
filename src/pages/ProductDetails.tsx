@@ -1,8 +1,14 @@
+import Container from "../components/Container";
+
 const ProductDetails = () => {
   return (
-    <div>
-      <h2>This is ProductDetails Component</h2>
-    </div>
+    <Container>
+      <div className="w-full min-h-[50vh] flex justify-center items-center">
+        <h2 className="text-2xl font-semibold">
+          Product details Page will Made Soon
+        </h2>
+      </div>
+    </Container>
   );
 };
 

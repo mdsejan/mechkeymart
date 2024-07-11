@@ -8,10 +8,12 @@ import ProductDetails from "../pages/ProductDetails";
 import Products from "../pages/Products";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <NotFound />,
     element: <App />,
     children: [
       {
