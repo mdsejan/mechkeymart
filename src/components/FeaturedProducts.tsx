@@ -88,7 +88,7 @@ const FeaturedProducts: React.FC = () => {
         </h2>
         <Link
           to="/products"
-          className="hidden lg:inline-block bg-gray-100 text-blue-800 py-2 px-4 rounded hover:bg-gray-200 font-bold"
+          className="hidden lg:inline-block bg-white text-blue-600 py-1 px-4 rounded hover:bg-[#ECF3F7] font-bold border-2 border-blue-600"
         >
           See More
         </Link>
@@ -137,9 +137,26 @@ const FeaturedProducts: React.FC = () => {
             <div className="p-4">
               <Link
                 to={`/product/${product.id}`}
-                className="mt-4 inline-block bg-blue-600 text-white py-1 px-4 rounded hover:bg-blue-700"
+                className="mt-4 inline-block bg-blue-600 text-white py-1 px-2 rounded hover:bg-blue-700 morebtn"
               >
-                See Details
+                <span className="flex items-center">
+                  See Details
+                  <svg
+                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </span>
               </Link>
             </div>
           </div>
