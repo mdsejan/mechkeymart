@@ -12,3 +12,10 @@ export interface Brand {
   logo: string;
   title: string;
 }
+
+export interface TestimonialCardProps {
+  image: string;
+  text: string;
+  name: string;
+  company: string;
+}

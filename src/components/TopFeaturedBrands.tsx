@@ -26,7 +26,7 @@ const brands: Brand[] = [
 
 const TopFeaturedBrands: React.FC = () => {
   return (
-    <div className="py-8">
+    <div className="py-4 md:py-12">
       <Container>
         <div>
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-start">

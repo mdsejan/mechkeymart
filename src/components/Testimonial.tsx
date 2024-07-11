@@ -43,7 +43,7 @@ const Testimonial: React.FC = () => {
         </div>
         <div className="md:flex md:flex-wrap md:-mx-4 mb-4">
           {testimonials.map((testimonial, index) => (
-            <div className="md:w-1/3 md:px-4 mt-6 flex" key={index}>
+            <div className="md:w-1/3 px-1 md:px-4 mt-6 flex" key={index}>
               <TestimonialCard
                 image={testimonial.image}
                 text={testimonial.text}
