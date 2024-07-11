@@ -7,3 +7,8 @@ export type TProduct = {
   price: string;
   rating: string;
 };
+
+export interface Brand {
+  logo: string;
+  title: string;
+}
