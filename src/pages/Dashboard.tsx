@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
           {products.map((product: Product) => (
             <div key={product._id} className="bg-white rounded-lg shadow p-4">
               <div className="flex justify-between items-center">
@@ -90,12 +90,18 @@ const Dashboard: React.FC = () => {
                   </button>
                 </div>
               </div>
-              <p className="mb-2">Price: ${product.price}</p>
-              <p className="mb-2">Brand: {product.brand}</p>
               <p className="mb-2">
-                availableQuantity: {product.availableQuantity}
+                <b>Price: &nbsp;</b> ${product.price}
               </p>
-              <p className="mb-2">Description: {product.description}</p>
+              <p className="mb-2">
+                <b>Brand: &nbsp;</b> {product.brand}
+              </p>
+              <p className="mb-2">
+                <b>availableQuantity: &nbsp;</b> {product.availableQuantity}
+              </p>
+              <p className="mb-2">
+                <b>Description: &nbsp; </b> {product.description}
+              </p>
               {/* <div>{product._id}</div> */}
             </div>
           ))}

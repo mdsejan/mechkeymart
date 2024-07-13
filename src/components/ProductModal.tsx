@@ -33,13 +33,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 sm:p-6">
       <div className="bg-white rounded-lg p-6 w-full max-w-lg">
         <div className="mb-4">
           <h2 className="text-2xl font-bold">{title}</h2>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Name</label>
               <input
@@ -109,7 +109,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 required
               />
             </div>
-            <div className="mb-4 md:col-span-2">
+            <div className="mb-4 col-span-2">
               <label className="block text-gray-700 mb-2">Description</label>
               <textarea
                 name="description"
