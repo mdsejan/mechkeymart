@@ -9,12 +9,12 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [formData, setFormData] = useState<Product>(
     product || {
-      id: 0,
+      _id: "",
       name: "",
       price: 0,
       brand: "",
       description: "",
-      quantity: 0,
+      availableQuantity: 0,
       rating: 0,
       image: "",
     }
@@ -80,8 +80,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <label className="block text-gray-700 mb-2">Quantity</label>
               <input
                 type="number"
-                name="quantity"
-                value={formData.quantity}
+                name="availableQuantity"
+                value={formData.availableQuantity}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
                 required

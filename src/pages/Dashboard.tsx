@@ -3,51 +3,56 @@ import ProductModal from "../components/ProductModal";
 import Container from "../components/Container";
 import { FaPenToSquare, FaTrash } from "react-icons/fa6";
 import { Product } from "../types";
-
-const initialProducts: Product[] = [
-  {
-    id: 1,
-    name: "Keyboard A",
-    price: 100,
-    brand: "Brand A",
-    description: "A great keyboard.",
-    quantity: 10,
-    rating: 4.5,
-    image: "",
-  },
-  {
-    id: 2,
-    name: "Keyboard B",
-    price: 150,
-    brand: "Brand B",
-    description: "An even better keyboard.",
-    quantity: 5,
-    rating: 4.7,
-    image: "",
-  },
-];
+import {
+  useGetProductQuery,
+  useUpdateProductMutation,
+} from "../redux/api/baseApi";
+import { toast } from "sonner";
 
 const Dashboard: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  // const [products, setProducts] = useState<Product[]>(initialProducts);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
+  const { data, isLoading } = useGetProductQuery({});
+
+  const [updateProduct] = useUpdateProductMutation();
+
+  if (isLoading) {
+    return (
+      <p className="text-2xl text-yellow-500 flex justify-center items-center">
+        Loading...
+      </p>
+    );
+  }
+
+  const products = data?.data || [];
+
   const handleAddProduct = (newProduct: Product) => {
-    setProducts([...products, { ...newProduct, id: products.length + 1 }]);
+    // setProducts([...products, { ...newProduct, id: products.length + 1 }]);
+    console.log(newProduct);
     setIsAddModalOpen(false);
   };
 
-  const handleUpdateProduct = (updatedProduct: Product) => {
-    setProducts(
-      products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
-    );
+  const handleUpdateProduct = async (updatedProduct: Product) => {
+    const id = updatedProduct._id;
+    try {
+      const res = await updateProduct({ id, data: updatedProduct }).unwrap();
+      if (res?.success) {
+        toast.success(res?.message);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update product");
+    }
     setIsUpdateModalOpen(false);
   };
 
-  const handleDeleteProduct = (productId: number) => {
-    setProducts(products.filter((p) => p.id !== productId));
-  };
+  // const handleDeleteProduct = (productId) => {
+  //   // setProducts(products.filter((p) => p.id !== productId));
+  //   console.log(productId);
+  // };
 
   return (
     <Container>
@@ -63,8 +68,8 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow p-4">
+          {products.map((product: Product) => (
+            <div key={product._id} className="bg-white rounded-lg shadow p-4">
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-bold mb-2">{product.name}</h2>
                 <div className="flex space-x-2">
@@ -79,7 +84,7 @@ const Dashboard: React.FC = () => {
                   </button>
                   <button
                     className="bg-red-500 text-white py-2 px-2 rounded"
-                    onClick={() => handleDeleteProduct(product.id)}
+                    // onClick={() => handleDeleteProduct(product._id)}
                   >
                     <FaTrash />
                   </button>
@@ -87,7 +92,11 @@ const Dashboard: React.FC = () => {
               </div>
               <p className="mb-2">Price: ${product.price}</p>
               <p className="mb-2">Brand: {product.brand}</p>
+              <p className="mb-2">
+                availableQuantity: {product.availableQuantity}
+              </p>
               <p className="mb-2">Description: {product.description}</p>
+              {/* <div>{product._id}</div> */}
             </div>
           ))}
         </div>

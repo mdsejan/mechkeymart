@@ -14,12 +14,12 @@ export interface Brand {
 }
 
 export interface Product {
-  id: number;
+  _id?: string;
   name: string;
   price: number;
   brand: string;
   description: string;
-  quantity: number;
+  availableQuantity: number;
   rating: number;
   image: string;
 }
