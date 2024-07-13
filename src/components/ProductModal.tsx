@@ -9,7 +9,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [formData, setFormData] = useState<Product>(
     product || {
-      _id: "",
       name: "",
       price: 0,
       brand: "",
@@ -24,7 +23,12 @@ const ProductModal: React.FC<ProductModalProps> = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    // Convert numeric fields to numbers
+    const numericFields = ["price", "availableQuantity", "rating"];
+    const newValue = numericFields.includes(name) ? Number(value) : value;
+
+    setFormData({ ...formData, [name]: newValue });
   };
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import { FaPenToSquare, FaTrash } from "react-icons/fa6";
 import { Product } from "../types";
 import {
+  useAddProductMutation,
   useGetProductQuery,
   useUpdateProductMutation,
 } from "../redux/api/baseApi";
@@ -18,6 +19,7 @@ const Dashboard: React.FC = () => {
   const { data, isLoading } = useGetProductQuery({});
 
   const [updateProduct] = useUpdateProductMutation();
+  const [addProduct] = useAddProductMutation();
 
   if (isLoading) {
     return (
@@ -29,9 +31,18 @@ const Dashboard: React.FC = () => {
 
   const products = data?.data || [];
 
-  const handleAddProduct = (newProduct: Product) => {
-    // setProducts([...products, { ...newProduct, id: products.length + 1 }]);
+  const handleAddProduct = async (newProduct: Product) => {
     console.log(newProduct);
+    try {
+      const res = await addProduct(newProduct).unwrap();
+      if (res?.success) {
+        toast.success(res?.message);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to Add product");
+    }
+
     setIsAddModalOpen(false);
   };
 

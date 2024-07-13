@@ -7,6 +7,16 @@ export const baseApi = createApi({
   }),
   tagTypes: ["Products"],
   endpoints: (builder) => ({
+    addProduct: builder.mutation({
+      query: (data) => {
+        return {
+          method: "POST",
+          url: `/product`,
+          body: data,
+        };
+      },
+      invalidatesTags: ["Products"],
+    }),
     getProduct: builder.query({
       query: () => ({
         method: "GET",
@@ -27,4 +37,8 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductQuery, useUpdateProductMutation } = baseApi;
+export const {
+  useGetProductQuery,
+  useUpdateProductMutation,
+  useAddProductMutation,
+} = baseApi;
