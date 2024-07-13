@@ -5,6 +5,7 @@ import { FaPenToSquare, FaTrash } from "react-icons/fa6";
 import { Product } from "../types";
 import {
   useAddProductMutation,
+  useDeleteProductMutation,
   useGetProductQuery,
   useUpdateProductMutation,
 } from "../redux/api/baseApi";
@@ -20,6 +21,7 @@ const Dashboard: React.FC = () => {
 
   const [updateProduct] = useUpdateProductMutation();
   const [addProduct] = useAddProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
 
   if (isLoading) {
     return (
@@ -32,7 +34,6 @@ const Dashboard: React.FC = () => {
   const products = data?.data || [];
 
   const handleAddProduct = async (newProduct: Product) => {
-    console.log(newProduct);
     try {
       const res = await addProduct(newProduct).unwrap();
       if (res?.success) {
@@ -60,10 +61,47 @@ const Dashboard: React.FC = () => {
     setIsUpdateModalOpen(false);
   };
 
-  // const handleDeleteProduct = (productId) => {
-  //   // setProducts(products.filter((p) => p.id !== productId));
-  //   console.log(productId);
-  // };
+  const handleDeleteProduct = (productId: string | undefined) => {
+    if (!productId) return;
+
+    const confirmDelete = async () => {
+      try {
+        const res = await deleteProduct(productId).unwrap();
+        if (res?.success) {
+          toast.success(res?.message);
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to Delete product");
+      }
+    };
+
+    toast(
+      <div>
+        <p>Are you sure you want to delete this product?</p>
+        <div className="flex justify-end mt-4">
+          <button
+            onClick={() => {
+              confirmDelete();
+              toast.dismiss();
+            }}
+            className="bg-red-500 text-white py-1 px-3 rounded mr-2"
+          >
+            Yes
+          </button>
+          <button
+            onClick={() => toast.dismiss()}
+            className="bg-gray-500 text-white py-1 px-3 rounded"
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      {
+        duration: 5000,
+      }
+    );
+  };
 
   return (
     <Container>
@@ -95,7 +133,7 @@ const Dashboard: React.FC = () => {
                   </button>
                   <button
                     className="bg-red-500 text-white py-2 px-2 rounded"
-                    // onClick={() => handleDeleteProduct(product._id)}
+                    onClick={() => handleDeleteProduct(product._id)}
                   >
                     <FaTrash />
                   </button>
