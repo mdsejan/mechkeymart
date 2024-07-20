@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async";
 import Container from "../components/Container";
 
 const ContactUs = () => {
   return (
     <Container>
+      <Helmet>
+        <title>Contact - MechKeyMart</title>
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-12 border my-16">
         <div className="bg-blue-950 md:col-span-4 p-10 text-white">
           <p className="mt-4 text-sm leading-7 font-regular uppercase">

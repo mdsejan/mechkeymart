@@ -37,3 +37,12 @@ export interface ProductModalProps {
   onSave: (product: Product) => void;
   onClose: () => void;
 }
+
+export interface SidebarContentProps {
+  searchTerm: string;
+  handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  priceRange: [number, number];
+  handlePriceRangeChange: (min: number, max: number) => void;
+  sortOrder: "asc" | "desc";
+  handleSortOrderChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}

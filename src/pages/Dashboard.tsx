@@ -10,6 +10,7 @@ import {
   useUpdateProductMutation,
 } from "../redux/api/baseApi";
 import { toast } from "sonner";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard: React.FC = () => {
   // const [products, setProducts] = useState<Product[]>(initialProducts);
@@ -105,6 +106,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Dashboard - MechKeyMart</title>
+      </Helmet>
       <div className="w-full py-16">
         <div className="w-full flex justify-between items-center mb-12">
           <h1 className="text-3xl font-bold">Manage Products</h1>

@@ -1,4 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Product } from "../../types";
+
+type QueryParams = {
+  search?: string;
+  brand?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  sortBy?: "asc" | "desc";
+};
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
@@ -7,6 +16,7 @@ export const baseApi = createApi({
   }),
   tagTypes: ["Products"],
   endpoints: (builder) => ({
+    // add new product
     addProduct: builder.mutation({
       query: (data) => {
         return {
@@ -17,6 +27,8 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["Products"],
     }),
+
+    // get all product
     getProduct: builder.query({
       query: () => ({
         method: "GET",
@@ -24,6 +36,22 @@ export const baseApi = createApi({
       }),
       providesTags: ["Products"],
     }),
+    // get filter product
+    getFilteredProduct: builder.query<Product[], QueryParams>({
+      query: ({
+        search = "",
+        brand = "",
+        minPrice = 0,
+        maxPrice = 1000,
+        sortBy = "asc",
+      }) => ({
+        url: "/products",
+        params: { search, brand, minPrice, maxPrice, sortBy },
+      }),
+      providesTags: ["Products"],
+    }),
+
+    // update a product
     updateProduct: builder.mutation({
       query: ({ data, id }) => {
         return {
@@ -34,6 +62,8 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["Products"],
     }),
+
+    // delete a product
     deleteProduct: builder.mutation({
       query: (id) => {
         return {
@@ -51,4 +81,5 @@ export const {
   useUpdateProductMutation,
   useAddProductMutation,
   useDeleteProductMutation,
+  useGetFilterdProductQuery,
 } = baseApi;
