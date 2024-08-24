@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import Rating from "../components/Rating";
+import Loading from "../components/Loading";
 
 const ProductsPage = () => {
   const [priceRange, setPriceRange] = useState([0, 1000]);
@@ -128,7 +129,7 @@ const ProductsPage = () => {
         <div className="lg:col-span-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {loading ? (
-              <p>Loading...</p>
+              <Loading />
             ) : (
               filteredProducts.map((product) => (
                 <div key={product.id} className="border p-4 rounded-lg">

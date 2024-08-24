@@ -11,6 +11,7 @@ import {
 } from "../redux/api/baseApi";
 import { toast } from "sonner";
 import { Helmet } from "react-helmet-async";
+import Loading from "../components/Loading";
 
 const Dashboard: React.FC = () => {
   // const [products, setProducts] = useState<Product[]>(initialProducts);
@@ -26,9 +27,10 @@ const Dashboard: React.FC = () => {
 
   if (isLoading) {
     return (
-      <p className="text-2xl text-yellow-500 flex justify-center items-center">
-        Loading...
-      </p>
+      // <p className="text-2xl text-yellow-500 flex justify-center items-center">
+      //   Loading...
+      // </p>
+      <Loading />
     );
   }
 
