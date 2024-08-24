@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Helmet>

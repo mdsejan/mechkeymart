@@ -1,7 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import Container from "../components/Container";
+import { useEffect } from "react";
 
 const ContactUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Container>
       <Helmet>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductModal from "../components/ProductModal";
 import Container from "../components/Container";
 import { FaPenToSquare, FaTrash } from "react-icons/fa6";
@@ -24,6 +24,10 @@ const Dashboard: React.FC = () => {
   const [updateProduct] = useUpdateProductMutation();
   const [addProduct] = useAddProductMutation();
   const [deleteProduct] = useDeleteProductMutation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (isLoading) {
     return (
