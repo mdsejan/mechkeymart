@@ -1,20 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Product } from "../../types";
-
-type QueryParams = {
-  search?: string;
-  brand?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  sortBy?: "asc" | "desc";
-};
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://mechkeymart-server.vercel.app/api",
   }),
-  tagTypes: ["Products"],
+  tagTypes: ["Products", "filterProducts"],
   endpoints: (builder) => ({
     // add new product
     addProduct: builder.mutation({
@@ -36,19 +27,30 @@ export const baseApi = createApi({
       }),
       providesTags: ["Products"],
     }),
-    // get filter product
-    getFilteredProduct: builder.query<Product[], QueryParams>({
-      query: ({
-        search = "",
-        brand = "",
-        minPrice = 0,
-        maxPrice = 1000,
-        sortBy = "asc",
-      }) => ({
-        url: "/products",
-        params: { search, brand, minPrice, maxPrice, sortBy },
-      }),
-      providesTags: ["Products"],
+
+    getFilterProduct: builder.query({
+      query: (query) => {
+        const params = new URLSearchParams();
+        if (query?.search) {
+          params.append("search", query.search);
+        }
+        if (query?.sortBy) {
+          params.append("sortBy", query.sortBy);
+        }
+        if (query?.minPrice) {
+          params.append("minPrice", query.minPrice);
+        }
+        if (query?.maxPrice) {
+          params.append("maxPrice", query.maxPrice);
+        }
+
+        return {
+          url: `/product`,
+          method: "GET",
+          params,
+        };
+      },
+      providesTags: ["filterProducts"],
     }),
 
     // update a product
@@ -81,5 +83,5 @@ export const {
   useUpdateProductMutation,
   useAddProductMutation,
   useDeleteProductMutation,
-  useGetFilterdProductQuery,
+  useGetFilterProductQuery,
 } = baseApi;
