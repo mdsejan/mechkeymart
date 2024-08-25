@@ -7,7 +7,11 @@ import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
 
 const ProductsPage = () => {
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("no");
   const [priceRange, setPriceRange] = useState([0, 1000]);
+
+  console.log(search, sort);
 
   const filteredProducts = [
     {
@@ -96,9 +100,13 @@ const ProductsPage = () => {
           <div className="lg:col-span-1">
             <div className="flex flex-col gap-6 p-4 border rounded-md lg:sticky top-8">
               <input
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+                value={search}
                 type="text"
                 placeholder="Search by name, brand..."
-                className="p-2 border rounded-md"
+                className="p-2 border rounded-md outline-none focus:ring-1"
               />
 
               <div className="px-4 py-4">
@@ -120,12 +128,23 @@ const ProductsPage = () => {
                   />
                 </div>
               </div>
-              <select className="p-2 border rounded-md">
-                <option value="">Sort by</option>
+              <select
+                className="p-2 border rounded-md outline-none focus:ring-1"
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+              >
+                <option value="no">Sort by</option>
                 <option value="low-to-high">Price: Low to High</option>
                 <option value="high-to-low">Price: High to Low</option>
               </select>
-              <button className="p-2 bg-red-500 text-white rounded-md">
+              <button
+                onClick={() => {
+                  setPriceRange([1, 1000]);
+                  setSearch("");
+                  setSort("no");
+                }}
+                className="p-2 bg-red-500 text-white rounded-md"
+              >
                 Clear Filters
               </button>
             </div>
