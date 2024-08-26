@@ -96,6 +96,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <input
                 type="number"
                 name="rating"
+                min={1}
+                max={5}
                 value={formData.rating}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"

@@ -71,7 +71,7 @@ export const baseApi = createApi({
           body: data,
         };
       },
-      invalidatesTags: ["Products"],
+      invalidatesTags: ["Products", "filterProducts", "Product"],
     }),
 
     // delete a product
