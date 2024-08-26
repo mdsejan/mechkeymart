@@ -42,15 +42,15 @@ const ProductDetails: React.FC = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-16 py-32">
+    <div className="max-w-7xl mx-auto px-6 lg:px-16 py-32">
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col md:flex-row border p-24 rounded-md shadow-sm">
+        <div className="flex flex-col lg:flex-row border  p-12 xl:p-24 rounded-md shadow-sm">
           <img
             src={product?.image}
             alt={product?.name}
-            className="w-full md:w-1/2 object-cover rounded-lg shadow-lg"
+            className="w-full lg:w-1/2 object-cover rounded-lg shadow-lg md:mb-12"
           />
           <div className="md:ml-8 mt-4 md:mt-0">
             <h1 className="text-3xl font-bold mb-4">{product?.name}</h1>
