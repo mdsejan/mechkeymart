@@ -77,7 +77,7 @@ const ProductsPage = () => {
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
-                <option value="no">Sort by</option>
+                <option value="">Sort by</option>
                 <option value="priceAsc">Price: Low to High</option>
                 <option value="priceDesc">Price: High to Low</option>
               </select>

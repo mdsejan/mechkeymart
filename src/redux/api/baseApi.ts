@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://mechkeymart-server.vercel.app/api",
   }),
-  tagTypes: ["Products", "filterProducts"],
+  tagTypes: ["Products", "filterProducts", "Product"],
   endpoints: (builder) => ({
     // add new product
     addProduct: builder.mutation({
@@ -53,6 +53,15 @@ export const baseApi = createApi({
       providesTags: ["filterProducts"],
     }),
 
+    // Get Product By Id
+    getProductById: builder.query({
+      query: (id) => ({
+        url: `/product/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Product"],
+    }),
+
     // update a product
     updateProduct: builder.mutation({
       query: ({ data, id }) => {
@@ -84,4 +93,5 @@ export const {
   useAddProductMutation,
   useDeleteProductMutation,
   useGetFilterProductQuery,
+  useGetProductByIdQuery,
 } = baseApi;

@@ -1,76 +1,8 @@
-// import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import { TProduct } from "../types";
-// import keyimgone from "../assets/img/keyimg1.png";
-// import keyimgTwo from "../assets/img/keyimg2.webp";
-// import keyimgthree from "../assets/img/keyimg3.webp";
-// import keyimgfour from "../assets/img/keyimg4.webp";
-// import keyimgfive from "../assets/img/keyimg5.webp";
-// import keyimgsix from "../assets/img/keyimg6.webp";
 import Container from "./Container";
 import { useGetProductQuery } from "../redux/api/baseApi";
-import { TProduct } from "../types";
+import { Product } from "../types";
 import SkelentonCard from "./SkelentonCard";
-
-// // Dummy data for illustration. Replace with real data fetching.
-// const fetchFeaturedProducts = async () => {
-//   return [
-//     {
-//       id: 1,
-//       image: keyimgone,
-//       name: "Keychron K2",
-//       brand: "Keychron",
-//       quantity: 10,
-//       price: "$99.99",
-//       rating: "⭐⭐⭐⭐⭐",
-//     },
-//     {
-//       id: 2,
-//       image: keyimgTwo,
-//       name: "Corsair K95 RGB",
-//       brand: "Corsair",
-//       quantity: 5,
-//       price: "$149.99",
-//       rating: "⭐⭐⭐",
-//     },
-//     {
-//       id: 3,
-//       image: keyimgthree,
-//       name: "Razer BlackWidow",
-//       brand: "Razer",
-//       quantity: 8,
-//       price: "$129.99",
-//       rating: "⭐⭐⭐⭐⭐",
-//     },
-//     {
-//       id: 4,
-//       image: keyimgfour,
-//       name: "Logitech G Pro X",
-//       brand: "Logitech",
-//       quantity: 12,
-//       price: "$199.99",
-//       rating: "⭐⭐⭐⭐",
-//     },
-//     {
-//       id: 5,
-//       image: keyimgfive,
-//       name: "Ducky One 2 Mini",
-//       brand: "Ducky",
-//       quantity: 7,
-//       price: "$89.99",
-//       rating: "⭐⭐⭐⭐⭐",
-//     },
-//     {
-//       id: 6,
-//       image: keyimgsix,
-//       name: "SteelSeries Apex Pro",
-//       brand: "SteelSeries",
-//       quantity: 3,
-//       price: "$159.99",
-//       rating: "⭐⭐⭐⭐",
-//     },
-//   ].sort((a, b) => b.id - a.id); // Sort by ID for latest products
-// };
 
 const FeaturedProducts: React.FC = () => {
   // const [products, setProducts] = useState<TProduct[]>([]);
@@ -103,14 +35,6 @@ const FeaturedProducts: React.FC = () => {
 
   const { data: products } = data;
 
-  // useEffect(() => {
-  //   const loadProducts = async () => {
-  //     const data = await fetchFeaturedProducts();
-  //     setProducts(data);
-  //   };
-  //   loadProducts();
-  // }, []);
-
   return (
     <Container>
       <div className="flex justify-between items-center">
@@ -126,9 +50,9 @@ const FeaturedProducts: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-3">
-        {products?.slice(0, 6).map((product: TProduct) => (
+        {products?.slice(0, 6).map((product: Product) => (
           <div
-            key={product.id}
+            key={product._id}
             className="productcard  border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between"
           >
             <div>
@@ -154,7 +78,7 @@ const FeaturedProducts: React.FC = () => {
                   <span className="text-gray-950 font-medium">
                     Available Quantity: &nbsp;
                   </span>
-                  {product.quantity}
+                  {product.availableQuantity}
                 </p>
                 <p className="text-gray-700">
                   <span className="text-gray-950 font-medium">
@@ -172,7 +96,7 @@ const FeaturedProducts: React.FC = () => {
             </div>
             <div className="p-4">
               <Link
-                to={`/product/${product.id}`}
+                to={`/product/${product._id}`}
                 className="mt-4 inline-block bg-blue-600 text-white py-1 px-2 rounded hover:bg-blue-700 morebtn"
               >
                 <span className="flex items-center">
