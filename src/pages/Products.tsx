@@ -7,14 +7,16 @@ import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
 import { Product } from "../types";
 import { useGetFilterProductQuery } from "../redux/api/baseApi";
+import useDebounce from "../hooks/useDebounce";
 
 const ProductsPage = () => {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [priceRange, setPriceRange] = useState([0, 1000]);
+  const debounceValue = useDebounce(search);
 
   const { data, isLoading } = useGetFilterProductQuery({
-    search,
+    search: debounceValue,
     sortBy,
     minPrice: priceRange?.length && priceRange[0],
     maxPrice: priceRange?.length && priceRange[1],
@@ -28,7 +30,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [debounceValue]);
 
   return (
     <>
