@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/img/Logo.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
-const Navbar: React.FC<{ cartItemCount: number }> = ({ cartItemCount }) => {
+const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+
+  const cartItems = useSelector((state: RootState) => state?.cart?.items ?? []);
+
+  const cartItemCount = cartItems.reduce((total, item) => {
+    return total + (item?.quantity || 0);
+  }, 0);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

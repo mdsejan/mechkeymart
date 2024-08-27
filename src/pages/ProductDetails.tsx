@@ -3,39 +3,44 @@ import { useGetProductByIdQuery } from "../redux/api/baseApi";
 import { useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import Loading from "../components/Loading";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Product } from "../types";
+import { addToCart } from "../redux/features/cartSlice";
+import { RootState } from "../redux/store";
 
 // import { addToCart } from "../redux/features/cartSlice";
 
 const ProductDetails: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
 
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const { data, isLoading } = useGetProductByIdQuery(id);
 
   const product = data?.data;
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Get cart items from Redux store
-  // const cart = useSelector((state: any) => state.cart.items);
+  const cart = useSelector((state: RootState) => state?.cart?.items);
 
   // Find if product is already in the cart
-  // const cartItem = cart.find((item: Product) => item._id === product._id);
+  const AlreadyAdded = cart?.find(
+    (item: Product) => item?._id === product?._id
+  );
 
   // Handle Add to Cart
-  // const handleAddToCart = () => {
-  //   if (quantity > product.availableQuantity) {
-  //     alert("Cannot add more than available stock!");
-  //     return;
-  //   }
-  //   if (product.availableQuantity === 0) {
-  //     alert("Product is out of stock!");
-  //     return;
-  //   }
-  //   dispatch(addToCart({ ...product, quantity }));
-  // };
+  const handleAddToCart = () => {
+    if (quantity > product.availableQuantity) {
+      alert("Cannot add more than available stock!");
+      return;
+    }
+    if (product.availableQuantity === 0) {
+      alert("Product is out of stock!");
+      return;
+    }
+    dispatch(addToCart({ ...product, quantity }));
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,7 +75,11 @@ const ProductDetails: React.FC = () => {
             {product?.availableQuantity > 0 ? (
               <div className="mt-6 flex items-center space-x-4">
                 <button
-                  // onClick={handleAddToCart}
+                  onClick={handleAddToCart}
+                  disabled={
+                    AlreadyAdded &&
+                    AlreadyAdded?.quantity >= AlreadyAdded.availableQuantity
+                  }
                   className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-blue-600"
                 >
                   Add to Cart
