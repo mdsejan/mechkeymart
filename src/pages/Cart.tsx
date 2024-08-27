@@ -6,6 +6,7 @@ import { RootState } from "../redux/store";
 import Container from "../components/Container";
 import { TbTrashXFilled } from "react-icons/tb";
 import { LuShoppingCart } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -132,17 +133,18 @@ const Cart: React.FC = () => {
                   <p className="text-sm text-gray-400">including VAT</p>
                 </div>
               </div>
-              <button
-                className={`mt-6 w-full rounded-md py-1.5 font-medium text-blue-50 ${
+
+              <Link
+                to="/checkout"
+                state={{ totalPrice: calculateTotalPrice() }}
+                className={`block text-center mt-6 w-full rounded-md py-1.5 font-medium text-blue-50 ${
                   isCheckoutDisabled
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-500 hover:bg-blue-600"
                 }`}
-                disabled={isCheckoutDisabled}
-                onClick={() => console.log("Proceeding to checkout...")}
               >
-                Check out
-              </button>
+                Proceed to Checkout
+              </Link>
             </div>
           </div>
         </>
