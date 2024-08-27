@@ -3,17 +3,18 @@ import { useEffect, useState } from "react";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import Rating from "../components/Rating";
-import Loading from "../components/Loading";
 import { Helmet } from "react-helmet-async";
 import { Product } from "../types";
 import { useGetFilterProductQuery } from "../redux/api/baseApi";
 import useDebounce from "../hooks/useDebounce";
+import SklnCard from "../components/SklnCard";
 
 const ProductsPage = () => {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const debounceValue = useDebounce(search);
+  const skCards = [1, 2, 3, 4, 5, 6];
 
   const { data, isLoading } = useGetFilterProductQuery({
     search: debounceValue,
@@ -97,56 +98,54 @@ const ProductsPage = () => {
           {/* Right Column - Products */}
           <div className="lg:col-span-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {isLoading ? (
-                <Loading />
-              ) : (
-                data?.data?.map((product: Product) => (
-                  <div
-                    key={product._id}
-                    className="productcard border p-4 rounded-lg"
-                  >
-                    <figure className="w-full h-48 rounded-md  overflow-hidden mb-4">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover"
-                      />
-                    </figure>
-
-                    <h2 className="text-lg font-bold mb-3">{product.name}</h2>
-                    <div className="flex flex-col gap-1">
-                      <p>Brand: {product.brand}</p>
-                      <p>Available Quantity: {product.availableQuantity}</p>
-                      <p>Price: ${product.price}</p>
-
-                      <Rating rating={Math.round(product.rating)} />
-                    </div>
-                    <Link
-                      to={`/product/${product._id}`}
-                      className="inline-block px-3 py-1 mt-6 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-200 morebtn"
+              {isLoading
+                ? skCards?.map((index) => <SklnCard key={index} />)
+                : data?.data?.map((product: Product) => (
+                    <div
+                      key={product._id}
+                      className="productcard border p-4 rounded-lg"
                     >
-                      <span className="flex items-center">
-                        Details
-                        <svg
-                          className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 14 10"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                          />
-                        </svg>
-                      </span>
-                    </Link>
-                  </div>
-                ))
-              )}
+                      <figure className="w-full h-48 rounded-md  overflow-hidden mb-4">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-48 object-cover"
+                        />
+                      </figure>
+
+                      <h2 className="text-lg font-bold mb-3">{product.name}</h2>
+                      <div className="flex flex-col gap-1">
+                        <p>Brand: {product.brand}</p>
+                        <p>Available Quantity: {product.availableQuantity}</p>
+                        <p>Price: ${product.price}</p>
+
+                        <Rating rating={Math.round(product.rating)} />
+                      </div>
+                      <Link
+                        to={`/product/${product._id}`}
+                        className="inline-block px-3 py-1 mt-6 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-200 morebtn"
+                      >
+                        <span className="flex items-center">
+                          Details
+                          <svg
+                            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 10"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M1 5h12m0 0L9 1m4 4L9 9"
+                            />
+                          </svg>
+                        </span>
+                      </Link>
+                    </div>
+                  ))}
             </div>
           </div>
         </div>
