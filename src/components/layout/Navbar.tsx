@@ -11,9 +11,7 @@ const Navbar: React.FC = () => {
 
   const cartItems = useSelector((state: RootState) => state?.cart?.items ?? []);
 
-  const cartItemCount = cartItems.reduce((total, item) => {
-    return total + (item?.quantity || 0);
-  }, 0);
+  const cartItemCount = cartItems.length;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -92,11 +90,10 @@ const Navbar: React.FC = () => {
               className="relative text-gray-500 hover:text-gray-900"
             >
               <FaShoppingCart className="h-6 w-6" />
-              {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">
-                  {cartItemCount}
-                </span>
-              )}
+
+              <span className="absolute -top-1 -right-1 bg-[#ED4347] text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">
+                {cartItemCount}
+              </span>
             </Link>
             <div className="md:hidden ml-4">
               <button
