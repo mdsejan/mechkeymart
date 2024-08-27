@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../redux/hooks";
+import { clearCart } from "../redux/features/cartSlice";
 
 const Checkout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const totalPrice = location.state?.totalPrice || 0;
+  const dispatch = useAppDispatch();
 
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -12,10 +15,8 @@ const Checkout: React.FC = () => {
   const [address, setAddress] = useState<string>("");
 
   const handlePlaceOrder = () => {
-    // Simulate placing the order
-    console.log("Order placed successfully with Cash on Delivery");
-
-    // Optionally, deduct product quantity from the stock here
+    // Dispatch action to clear the cart
+    dispatch(clearCart());
 
     // Redirect to success page
     navigate("/success");
