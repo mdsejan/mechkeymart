@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CartItem } from "../types";
 import { removeFromCart, updateQuantity } from "../redux/features/cartSlice";
 import { RootState } from "../redux/store";
 import Container from "../components/Container";
+import { TbTrashXFilled } from "react-icons/tb";
+import { LuShoppingCart } from "react-icons/lu";
 
-const Cart2: React.FC = () => {
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
@@ -20,92 +22,133 @@ const Cart2: React.FC = () => {
     (item: CartItem) => item.quantity > item.availableQuantity
   );
 
-  return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Cart Items</h2>
+  // Page refresh warning effect
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (cartItems.length > 0) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
 
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [cartItems]);
+
+  return (
+    <Container>
+      {cartItems?.length > 0 && (
+        <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+      )}
+
+      {cartItems?.length === 0 ? (
+        <div className="min-h-80 mx-auto p-12 flex flex-col justify-center items-center">
+          <LuShoppingCart size={84} />
+          <p className="mt-8 text-xl">Your cart is empty.</p>
+        </div>
       ) : (
-        <Container>
-          <div>
-            {cartItems.map((item: CartItem) => (
-              <div
-                key={item._id}
-                className="flex justify-between items-center p-4 border rounded-lg shadow"
-              >
-                <div className="flex justify-around w-2/3">
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-sm text-gray-500">Price: ${item.price}</p>
-                  <p className="text-sm text-gray-500">
-                    Available: {item.availableQuantity}
-                  </p>
-                  <div className="flex items-center mt-2">
-                    <button
-                      className="px-2 py-1 bg-gray-300 rounded-l"
-                      onClick={() =>
-                        dispatch(
-                          updateQuantity({
-                            _id: item._id,
-                            quantity: item.quantity - 1,
-                          })
-                        )
-                      }
-                      disabled={item.quantity <= 1}
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-1 border-t border-b">
-                      {item.quantity}
-                    </span>
-                    <button
-                      className="px-2 py-1 bg-gray-300 rounded-r"
-                      onClick={() =>
-                        dispatch(
-                          updateQuantity({
-                            _id: item._id,
-                            quantity: item.quantity + 1,
-                          })
-                        )
-                      }
-                      disabled={item.quantity >= item.availableQuantity}
-                    >
-                      +
-                    </button>
+        <>
+          <div className="w-full justify-center px-6 md:flex md:space-x-6 xl:px-0">
+            <div className="rounded-lg lg:w-2/3">
+              {cartItems.map((item: CartItem) => (
+                <div
+                  key={item._id}
+                  className="justify-between mb-6 rounded-lg bg-white p-6 border sm:flex sm:justify-start"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full rounded-lg sm:w-40"
+                  />
+                  <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                    <div className="mt-5 sm:mt-0">
+                      <h2 className="text-lg font-bold text-gray-900">
+                        {item.name}
+                      </h2>
+                      <p className="text-sm text-gray-400 mt-3">
+                        ${item.price}
+                      </p>
+                    </div>
+                    <div className="mt-4 flex justify-between items-center sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                      <div className="flex items-center border-gray-100">
+                        <button
+                          className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                          onClick={() =>
+                            dispatch(
+                              updateQuantity({
+                                _id: item._id,
+                                quantity: item.quantity - 1,
+                              })
+                            )
+                          }
+                          disabled={item.quantity <= 1}
+                        >
+                          -
+                        </button>
+                        <input
+                          className="h-8 w-8 border bg-white text-center text-xs outline-none"
+                          type="number"
+                          value={item.quantity}
+                          readOnly
+                        />
+                        <button
+                          className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                          onClick={() =>
+                            dispatch(
+                              updateQuantity({
+                                _id: item._id,
+                                quantity: item.quantity + 1,
+                              })
+                            )
+                          }
+                          disabled={item.quantity >= item.availableQuantity}
+                        >
+                          +
+                        </button>
+                        <div
+                          className="ms-4 text-red-700 cursor-pointer"
+                          onClick={() => dispatch(removeFromCart(item._id))}
+                        >
+                          <TbTrashXFilled size={28} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="w-1/3 flex justify-end">
-                  <button
-                    className="px-4 py-2 bg-red-500 text-white rounded"
-                    onClick={() => dispatch(removeFromCart(item._id))}
-                  >
-                    Remove
-                  </button>
+              ))}
+            </div>
+            {/* Sub total */}
+
+            <div className="mt-6 h-full rounded-lg bg-white p-6 border md:mt-0 lg:w-1/3">
+              <div className="flex justify-between">
+                <p className="text-lg font-bold">Total</p>
+                <div className="">
+                  <p className="mb-1 text-lg font-bold">
+                    ${calculateTotalPrice().toFixed(2)}
+                  </p>
+                  <p className="text-sm text-gray-400">including VAT</p>
                 </div>
               </div>
-            ))}
-
-            <div className="text-right mt-8">
-              <p className="text-xl font-bold">
-                Total: ${calculateTotalPrice()}
-              </p>
               <button
-                className={`mt-4 px-6 py-2 rounded ${
+                className={`mt-6 w-full rounded-md py-1.5 font-medium text-blue-50 ${
                   isCheckoutDisabled
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-blue-500 text-white"
+                    : "bg-blue-500 hover:bg-blue-600"
                 }`}
                 disabled={isCheckoutDisabled}
                 onClick={() => console.log("Proceeding to checkout...")}
               >
-                Proceed To Checkout
+                Check out
               </button>
             </div>
           </div>
-        </Container>
+        </>
       )}
-    </div>
+    </Container>
   );
 };
 
-export default Cart2;
+export default Cart;

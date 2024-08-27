@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/img/Logo.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { LuShoppingCart } from "react-icons/lu";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,7 +90,7 @@ const Navbar: React.FC = () => {
               to="/cart"
               className="relative text-gray-500 hover:text-gray-900"
             >
-              <FaShoppingCart className="h-6 w-6" />
+              <LuShoppingCart size={28} />
 
               <span className="absolute -top-1 -right-1 bg-[#ED4347] text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">
                 {cartItemCount}
