@@ -1,49 +1,55 @@
-import React from "react";
-import warranty from "../assets/img/warranty.png";
-import shiping from "../assets/img/shiping.png";
-import support from "../assets/img/support.png";
-import customize from "../assets/img/customizable.png";
-import Container from "./Container";
+import {
+  FaShippingFast,
+  FaDollarSign,
+  FaTools,
+  FaKeyboard,
+} from "react-icons/fa";
 
-const Service: React.FC = () => {
+const Service = () => {
   const cards = [
     {
-      id: 1,
-      title: "Lifetime Warranty",
-      image: warranty,
+      icon: <FaShippingFast className="text-blue-500 w-12 h-12" />,
+      title: "Fast Shipping",
+      description: "We ship most orders within 24-48 hours from New Jersey.",
     },
     {
-      id: 2,
-      title: "Free Shipping",
-      image: shiping,
+      icon: <FaDollarSign className="text-green-500 w-12 h-12" />,
+      title: "Flexible Payments",
+      description:
+        "Multiple payment options and interest-free plans available.",
     },
     {
-      id: 3,
-      title: "Customizable",
-      image: customize,
+      icon: <FaTools className="text-yellow-500 w-12 h-12" />,
+      title: "Custom Builds",
+      description: "Create your dream mechanical keyboard from scratch.",
     },
     {
-      id: 4,
-      title: "Customer Support",
-      image: support,
+      icon: <FaKeyboard className="text-purple-500 w-12 h-12" />,
+      title: "Quality Products",
+      description:
+        "We offer the best mechanical keyboard products and accessories.",
     },
   ];
 
   return (
-    <Container>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-16">
-        {cards.map((card) => (
-          <div key={card.id} className="bg-white">
-            <img src={card.image} alt={card.title} className="w-full h-auto " />
-            <div className="p-4">
-              <h3 className="text-xl font-medium text-gray-900">
+    <section className="py-24">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center bg-white border rounded-lg p-6 text-center"
+            >
+              <div className="mb-4">{card.icon}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {card.title}
               </h3>
+              <p className="text-gray-700">{card.description}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </Container>
+    </section>
   );
 };
 

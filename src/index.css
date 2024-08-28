@@ -35,3 +35,11 @@
   opacity: 1;
   transform: translateX(0);
 }
+
+.mks img {
+  transition: transform 0.2s ease-in-out;
+}
+
+.mks:hover img {
+  transform: scale(1.2);
+}

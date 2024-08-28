@@ -16,8 +16,8 @@ const Hero: React.FC = () => {
           <span className="text-[#7F7F7F]">keyboards</span> for you
         </h2>
       </div>
-      <div className="flex flex-wrap justify-center gap-16 p-4 text-xs lg:text-lg">
-        <div className="flex flex-col items-center text-center space-y-4">
+      <div className="flex flex-wrap justify-center gap-16 py-6 px-4 text-xs lg:text-lg">
+        <div className="flex flex-col items-center text-center space-y-4 mks">
           <img
             src={switches}
             alt="Keyboards Icon"
@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
           <p>Switches</p>
         </div>
 
-        <div className="flex flex-col items-center text-center space-y-4">
+        <div className="flex flex-col items-center text-center space-y-4 mks">
           <img
             src={keycaps}
             alt="Keyboards Icon"
@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
           <p>Keycaps</p>
         </div>
 
-        <div className="flex flex-col items-center text-center space-y-4">
+        <div className="flex flex-col items-center text-center space-y-4 mks">
           <img
             src={deskmats}
             alt="Keyboards Icon"
@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
           <p>Desk Mats</p>
         </div>
 
-        <div className="flex flex-col items-center text-center space-y-4">
+        <div className="flex flex-col items-center text-center space-y-4 mks">
           <img
             src={switchLube}
             alt="Keyboards Icon"
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
           <p>Lube</p>
         </div>
 
-        <div className="flex flex-col items-center text-center space-y-4">
+        <div className="flex flex-col items-center text-center space-y-4 mks">
           <img
             src={keyboardIcon}
             alt="Keyboards Icon"
@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
           <p>Keyboards</p>
         </div>
 
-        <div className="flex flex-col items-center text-center space-y-4">
+        <div className="flex flex-col items-center text-center space-y-4 mks">
           <img
             src={unboxing}
             alt="Accessories Icon"
