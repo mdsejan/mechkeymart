@@ -3,6 +3,7 @@ import Container from "./Container";
 import { useGetProductQuery } from "../redux/api/baseApi";
 import { Product } from "../types";
 import SkelentonCard from "./SkelentonCard";
+import Rating from "./Rating";
 
 const FeaturedProducts: React.FC = () => {
   // const [products, setProducts] = useState<TProduct[]>([]);
@@ -24,7 +25,7 @@ const FeaturedProducts: React.FC = () => {
             See More
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-3">
           {skCards?.map((index) => (
             <SkelentonCard key={index} />
           ))}
@@ -49,76 +50,48 @@ const FeaturedProducts: React.FC = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-3">
-        {products?.slice(0, 6).map((product: Product) => (
-          <div
-            key={product._id}
-            className="productcard  border border-gray-300 rounded-lg overflow-hidden flex flex-col justify-between"
-          >
-            <div>
-              <div className="w-full h-[150px] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-[150px] object-cover mb-4 rounded-md"
-                />
-              </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {products?.slice(0, 8).map((product: Product) => (
+          <div key={product._id} className="productcard border p-4 rounded-lg">
+            <figure className="w-full h-48 lg:h-32 xl:h-48 rounded-md  overflow-hidden mb-4">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-48 lg:h-32 xl:h-48 object-cover"
+              />
+            </figure>
 
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {product.name}
-                </h3>
-                <p className="text-gray-700">
-                  <span className="text-gray-950 font-medium">
-                    Brand: &nbsp;{" "}
-                  </span>
-                  {product.brand}
-                </p>
-                <p className="text-gray-700">
-                  <span className="text-gray-950 font-medium">
-                    Available Quantity: &nbsp;
-                  </span>
-                  {product.availableQuantity}
-                </p>
-                <p className="text-gray-700">
-                  <span className="text-gray-950 font-medium">
-                    Price: &nbsp;{" "}
-                  </span>
-                  {product.price}
-                </p>
-                <p className="text-gray-700">
-                  <span className="text-gray-950 font-medium">
-                    Rating: &nbsp;{" "}
-                  </span>
-                  {product.rating}
-                </p>
-              </div>
+            <h2 className="text-lg font-bold mb-3">{product.name}</h2>
+            <div className="flex flex-col gap-1">
+              <p>Brand: {product.brand}</p>
+              <p>Available Quantity: {product.availableQuantity}</p>
+              <p>Price: ${product.price}</p>
+
+              <Rating rating={Math.round(product.rating)} />
             </div>
-            <div className="p-4">
-              <Link
-                to={`/product/${product._id}`}
-                className="mt-4 inline-block bg-blue-600 text-white py-1 px-2 rounded hover:bg-blue-700 morebtn"
-              >
-                <span className="flex items-center">
-                  See Details
-                  <svg
-                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </span>
-              </Link>
-            </div>
+            <Link
+              to={`/product/${product._id}`}
+              className="inline-block px-3 py-1 mt-6 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-200 morebtn"
+            >
+              <span className="flex items-center">
+                Details
+                <svg
+                  className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </span>
+            </Link>
           </div>
         ))}
       </div>
