@@ -4,6 +4,7 @@ import {
   FaTools,
   FaKeyboard,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Service = () => {
   const cards = [
@@ -36,16 +37,21 @@ const Service = () => {
       <div className="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {cards.map((card, index) => (
-            <div
+            <motion.div
               key={index}
               className="flex flex-col items-center bg-white border rounded-lg p-6 text-center"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }} // Stagger effect
+              whileHover={{ scale: 1.05 }} // Scale up on hover
+              whileTap={{ scale: 0.95 }} // Scale down on click
             >
               <div className="mb-4">{card.icon}</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {card.title}
               </h3>
               <p className="text-gray-700">{card.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
