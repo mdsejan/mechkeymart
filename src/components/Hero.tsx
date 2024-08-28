@@ -6,70 +6,55 @@ import deskmats from "../assets/img/deskmats.png";
 import switchLube from "../assets/img/switchlube.png";
 import keyboardIcon from "../assets/img/keyboard.png";
 import unboxing from "../assets/img/unboxing.png";
+import { motion } from "framer-motion";
+
+const items = [
+  { src: switches, label: "Switches" },
+  { src: keycaps, label: "Keycaps" },
+  { src: deskmats, label: "Desk Mats" },
+  { src: switchLube, label: "Lube" },
+  { src: keyboardIcon, label: "Keyboards" },
+  { src: unboxing, label: "Accessories" },
+];
 
 const Hero: React.FC = () => {
   return (
     <Container>
-      <div className="w-full flex flex-col justify-center items-center gap-4 text-4xl md:text-6xl font-semibold  py-12">
-        <h2 className="text-[#141116] text center">The best mechanical</h2>
-        <h2 className="bg-gradient-to-r from-[#2F96FF] via-[#4AA0FF] to-[#B847BC] bg-clip-text text-transparent text center">
+      <div className="w-full flex flex-col justify-center items-center gap-4 text-4xl md:text-6xl font-semibold py-12">
+        <motion.h2
+          className="text-[#141116] text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          The best mechanical
+        </motion.h2>
+        <motion.h2
+          className="bg-gradient-to-r from-[#2F96FF] via-[#4AA0FF] to-[#B847BC] bg-clip-text text-transparent text-center"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           <span className="text-[#7F7F7F]">keyboards</span> for you
-        </h2>
+        </motion.h2>
       </div>
       <div className="flex flex-wrap justify-center gap-16 py-6 px-4 text-xs lg:text-lg">
-        <div className="flex flex-col items-center text-center space-y-4 mks">
-          <img
-            src={switches}
-            alt="Keyboards Icon"
-            className="w-12 h-12 lg:w-16 lg:h-16"
-          />
-          <p>Switches</p>
-        </div>
-
-        <div className="flex flex-col items-center text-center space-y-4 mks">
-          <img
-            src={keycaps}
-            alt="Keyboards Icon"
-            className="w-12 h-12 lg:w-16 lg:h-16"
-          />
-          <p>Keycaps</p>
-        </div>
-
-        <div className="flex flex-col items-center text-center space-y-4 mks">
-          <img
-            src={deskmats}
-            alt="Keyboards Icon"
-            className="w-12 h-12 lg:w-16 lg:h-16"
-          />
-          <p>Desk Mats</p>
-        </div>
-
-        <div className="flex flex-col items-center text-center space-y-4 mks">
-          <img
-            src={switchLube}
-            alt="Keyboards Icon"
-            className="w-12 h-12 lg:w-16 lg:h-16"
-          />
-          <p>Lube</p>
-        </div>
-
-        <div className="flex flex-col items-center text-center space-y-4 mks">
-          <img
-            src={keyboardIcon}
-            alt="Keyboards Icon"
-            className="w-12 h-12 lg:w-16 lg:h-16"
-          />
-          <p>Keyboards</p>
-        </div>
-
-        <div className="flex flex-col items-center text-center space-y-4 mks">
-          <img
-            src={unboxing}
-            alt="Accessories Icon"
-            className="w-12 h-12 lg:w-16 lg:h-16"
-          />
-          <p>Accessories</p>
-        </div>
+        {items.map((item, index) => (
+          <motion.div
+            key={index}
+            className="flex flex-col items-center text-center space-y-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }} // Stagger animation
+          >
+            <img
+              src={item.src}
+              alt={`${item.label} Icon`}
+              className="w-12 h-12 lg:w-16 lg:h-16"
+            />
+            <p>{item.label}</p>
+          </motion.div>
+        ))}
       </div>
     </Container>
   );
