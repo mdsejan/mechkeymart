@@ -1,34 +1,74 @@
 import React from "react";
-import heroImg from "../assets/img/hero-img.png";
 import Container from "./Container";
+import switches from "/dist/assets/switches.png";
+import keycaps from "/dist/assets/keycaps.png";
+import deskmats from "/dist/assets/deskmats.png";
+import switchLube from "/dist/assets/switchlube.png";
+import keyboardIcon from "/dist/assets/keyboard-icon.png";
+import unboxing from "/dist/assets/unboxing.png";
+
 const Hero: React.FC = () => {
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row">
-        <div className="w-full lg:w-5/12 mb-8 lg:mb-0">
+      <div className="w-full flex flex-col justify-center items-center gap-4 text-4xl md:text-6xl font-semibold  py-12">
+        <h2 className="text-[#141116] text center">The best mechanical</h2>
+        <h2 className="bg-gradient-to-r from-[#2F96FF] via-[#4AA0FF] to-[#B847BC] bg-clip-text text-transparent text center">
+          <span className="text-[#7F7F7F]">keyboards</span> for you
+        </h2>
+      </div>
+      <div className="flex flex-wrap justify-center gap-16 p-4 text-xs lg:text-lg">
+        <div className="flex flex-col items-center text-center space-y-4">
           <img
-            src={heroImg}
-            alt="Hero"
-            className="w-full h-auto object-cover"
+            src={switches}
+            alt="Keyboards Icon"
+            className="w-12 h-12 lg:w-16 lg:h-16"
           />
+          <p>Switches</p>
         </div>
-        <div className="w-full lg:w-7/12 lg:pl-8">
-          <h1 className="text-3xl sm:text-5xl xl:text-7xl font-bold text-gray-900 mb-4">
-            Elevate Your Typing Experience
-          </h1>
-          <p className="text-lg text-gray-600 mb-8">
-            Elevate your typing experience with MechKeyMart's exclusive
-            collection of mechanical keyboards. Our keyboards provide a tactile
-            and responsive typing experience, designed for enthusiasts and
-            professionals alike. Whether you prefer clicky switches for precise
-            feedback or silent switches for quiet operation, our wide selection
-            offers customizable options to suit every preference. Upgrade your
-            setup with MechKeyMart and discover the joy of premium mechanical
-            keyboards.
-          </p>
-          <button className="w-full xl:w-[60%] bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 font-bold">
-            Shop Now
-          </button>
+
+        <div className="flex flex-col items-center text-center space-y-4">
+          <img
+            src={keycaps}
+            alt="Keyboards Icon"
+            className="w-12 h-12 lg:w-16 lg:h-16"
+          />
+          <p>Keycaps</p>
+        </div>
+
+        <div className="flex flex-col items-center text-center space-y-4">
+          <img
+            src={deskmats}
+            alt="Keyboards Icon"
+            className="w-12 h-12 lg:w-16 lg:h-16"
+          />
+          <p>Desk Mats</p>
+        </div>
+
+        <div className="flex flex-col items-center text-center space-y-4">
+          <img
+            src={switchLube}
+            alt="Keyboards Icon"
+            className="w-12 h-12 lg:w-16 lg:h-16"
+          />
+          <p>Lube</p>
+        </div>
+
+        <div className="flex flex-col items-center text-center space-y-4">
+          <img
+            src={keyboardIcon}
+            alt="Keyboards Icon"
+            className="w-12 h-12 lg:w-16 lg:h-16"
+          />
+          <p>Keyboards</p>
+        </div>
+
+        <div className="flex flex-col items-center text-center space-y-4">
+          <img
+            src={unboxing}
+            alt="Accessories Icon"
+            className="w-12 h-12 lg:w-16 lg:h-16"
+          />
+          <p>Accessories</p>
         </div>
       </div>
     </Container>
