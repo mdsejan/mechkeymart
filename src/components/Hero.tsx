@@ -1,11 +1,11 @@
 import React from "react";
 import Container from "./Container";
-import switches from "/dist/assets/switches.png";
-import keycaps from "/dist/assets/keycaps.png";
-import deskmats from "/dist/assets/deskmats.png";
-import switchLube from "/dist/assets/switchlube.png";
-import keyboardIcon from "/dist/assets/keyboard-icon.png";
-import unboxing from "/dist/assets/unboxing.png";
+import switches from "../assets/img/switches.png";
+import keycaps from "../assets/img/keycaps.png";
+import deskmats from "../assets/img/deskmats.png";
+import switchLube from "../assets/img/switchlube.png";
+import keyboardIcon from "../assets/img/keyboard.png";
+import unboxing from "../assets/img/unboxing.png";
 
 const Hero: React.FC = () => {
   return (
