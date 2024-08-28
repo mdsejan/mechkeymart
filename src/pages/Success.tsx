@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { IoBagCheck } from "react-icons/io5";
 
 const Success: React.FC = () => {
   const currentDate = new Date().toLocaleDateString();
@@ -10,19 +11,22 @@ const Success: React.FC = () => {
   return (
     <section className="bg-white antialiased py-24">
       <div className="mx-auto max-w-2xl px-4 2xl:px-0">
-        <h2 className="text-xl text-center font-semibold text-gray-900 sm:text-2xl mb-4">
-          Thanks for your order!
-        </h2>
-        <p className="text-gray-500 text-center mb-6 md:mb-8">
-          Your order{" "}
-          <span className="font-medium text-blue-700 hover:underline">
-            #{orderId}
-          </span>{" "}
-          will be processed within 24 hours during working days. We will notify
-          you by email at{" "}
-          <span className="font-medium text-blue-700">{email}</span> once your
-          order has been shipped.
-        </p>
+        <div className=" text-center flex flex-col justify-center items-center gap-2">
+          <IoBagCheck size={64} color="#3B86F2" />
+          <h2 className="text-xl font-semibold text-gray-900 sm:text-2xl mb-4">
+            Thanks for your order!
+          </h2>
+          <p className="text-gray-500 text-center mb-6 md:mb-8">
+            Your order{" "}
+            <span className="font-medium text-blue-700 hover:underline">
+              #{orderId}
+            </span>{" "}
+            will be processed within 24 hours during working days. We will
+            notify you by email at{" "}
+            <span className="font-medium text-blue-700">{email}</span> once your
+            order has been shipped.
+          </p>
+        </div>
         <div className="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 mb-6 md:mb-8">
           <dl className="sm:flex items-center justify-between gap-4">
             <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Date</dt>
