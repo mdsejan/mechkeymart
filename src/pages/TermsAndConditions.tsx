@@ -1,6 +1,3 @@
-// src/pages/TermsAndConditions.tsx
-import React from "react";
-
 const TermsAndConditions = () => {
   return (
     <div className="container mx-auto px-4 py-6">
