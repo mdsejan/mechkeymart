@@ -19,6 +19,7 @@ const ProductDetails: React.FC = () => {
   const { data, isLoading } = useGetProductByIdQuery(id);
 
   const product = data?.data;
+  const productTitle = product?.name || "Product Details";
 
   const dispatch = useDispatch();
 
@@ -52,8 +53,9 @@ const ProductDetails: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{product?.name} </title>
+        <title> {productTitle} </title>
       </Helmet>
+
       <div className="max-w-7xl mx-auto px-6 lg:px-16 py-32">
         {isLoading ? (
           <Loading />
