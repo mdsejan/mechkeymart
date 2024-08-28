@@ -30,6 +30,10 @@ const Cart: React.FC = () => {
     toast.error(`${itemName} has been removed from your cart.`);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Page refresh warning effect
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {

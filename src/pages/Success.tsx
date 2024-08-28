@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoBagCheck } from "react-icons/io5";
 import { Helmet } from "react-helmet-async";
@@ -8,6 +8,10 @@ const Success: React.FC = () => {
   const location = useLocation();
   const { name, email, phone, address, orderId, paymentMethod } =
     location.state || {};
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

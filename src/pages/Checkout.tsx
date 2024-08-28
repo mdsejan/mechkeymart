@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
 import { clearCart } from "../redux/features/cartSlice";
@@ -39,6 +39,10 @@ const Checkout: React.FC = () => {
     // Redirect to success page
     navigate("/success", { state: orderDetails });
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

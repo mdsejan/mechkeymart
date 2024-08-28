@@ -19,6 +19,10 @@ const Navbar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     controls.start(
       isOpen ? { opacity: 1, height: "auto" } : { opacity: 0, height: 0 }
@@ -34,6 +38,7 @@ const Navbar: React.FC = () => {
             ? "text-blue-500 font-bold"
             : "text-gray-500"
         } hover:text-gray-900`}
+        onClick={closeMenu}
       >
         Home
       </Link>
@@ -44,6 +49,7 @@ const Navbar: React.FC = () => {
             ? "text-blue-500 font-bold"
             : "text-gray-500"
         } hover:text-gray-900`}
+        onClick={closeMenu}
       >
         Products
       </Link>
@@ -54,6 +60,7 @@ const Navbar: React.FC = () => {
             ? "text-blue-500 font-bold"
             : "text-gray-500"
         } hover:text-gray-900`}
+        onClick={closeMenu}
       >
         About
       </Link>
@@ -64,6 +71,7 @@ const Navbar: React.FC = () => {
             ? "text-blue-500 font-bold"
             : "text-gray-500"
         } hover:text-gray-900`}
+        onClick={closeMenu}
       >
         Contact
       </Link>
@@ -74,6 +82,7 @@ const Navbar: React.FC = () => {
             ? "text-blue-500 font-bold"
             : "text-gray-500"
         } hover:text-gray-900`}
+        onClick={closeMenu}
       >
         Dashboard
       </Link>
