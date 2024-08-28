@@ -5,6 +5,7 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import Testimonial from "../components/Testimonial";
 import TopFeaturedBrands from "../components/TopFeaturedBrands";
 import { useEffect } from "react";
+import CallToAction from "../components/CallToAction";
 
 const Home = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Home = () => {
       <Service />
       <FeaturedProducts />
       <TopFeaturedBrands />
+      <CallToAction />
       <Testimonial />
     </div>
   );
