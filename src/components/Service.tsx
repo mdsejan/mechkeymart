@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FaShippingFast,
   FaDollarSign,
@@ -5,8 +6,14 @@ import {
   FaKeyboard,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const Service = () => {
+const Service: React.FC = () => {
+  const { ref: sectionRef, inView: isSectionVisible } = useInView({
+    triggerOnce: true,
+    threshold: 0.1, // Trigger animation when 10% of the section is visible
+  });
+
   const cards = [
     {
       icon: <FaShippingFast className="text-blue-500 w-12 h-12" />,
@@ -33,7 +40,7 @@ const Service = () => {
   ];
 
   return (
-    <section className="py-24">
+    <section ref={sectionRef} className="py-24">
       <div className="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {cards.map((card, index) => (
@@ -41,7 +48,10 @@ const Service = () => {
               key={index}
               className="flex flex-col items-center bg-white border rounded-lg p-6 text-center"
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={{
+                opacity: isSectionVisible ? 1 : 0,
+                scale: isSectionVisible ? 1 : 0.95,
+              }}
               transition={{ duration: 0.4, delay: index * 0.1 }} // Stagger effect
               whileHover={{ scale: 1.05 }} // Scale up on hover
               whileTap={{ scale: 0.95 }} // Scale down on click

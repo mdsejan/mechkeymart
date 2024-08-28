@@ -8,6 +8,7 @@ import { TbTrashXFilled } from "react-icons/tb";
 import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import { Helmet } from "react-helmet-async";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ const Cart: React.FC = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Cart - MechKeyMart</title>
+      </Helmet>
       {cartItems?.length > 0 && (
         <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
       )}

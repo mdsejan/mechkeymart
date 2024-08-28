@@ -10,6 +10,8 @@ import Checkout from "../pages/Checkout";
 import NotFound from "../pages/NotFound";
 import Cart from "../pages/Cart";
 import Success from "../pages/Success";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsAndConditions from "../pages/TermsAndConditions";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactUs />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "terms",
+        element: <TermsAndConditions />,
       },
     ],
   },

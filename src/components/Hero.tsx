@@ -7,6 +7,7 @@ import switchLube from "../assets/img/switchlube.png";
 import keyboardIcon from "../assets/img/keyboard.png";
 import unboxing from "../assets/img/unboxing.png";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const items = [
   { src: switches, label: "Switches" },
@@ -18,13 +19,21 @@ const items = [
 ];
 
 const Hero: React.FC = () => {
+  const { ref: sectionRef, inView: isSectionVisible } = useInView({
+    triggerOnce: true,
+    threshold: 0.1, // Trigger animation when 10% of the section is visible
+  });
+
   return (
     <Container>
-      <div className="w-full flex flex-col justify-center items-center gap-4 text-4xl md:text-6xl font-semibold py-12">
+      <div
+        ref={sectionRef}
+        className="w-full flex flex-col justify-center items-center gap-4 text-4xl md:text-6xl font-semibold py-12"
+      >
         <motion.h2
           className="text-[#141116] text-center"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: isSectionVisible ? 1 : 0 }}
           transition={{ duration: 1 }}
         >
           The best mechanical
@@ -32,7 +41,10 @@ const Hero: React.FC = () => {
         <motion.h2
           className="bg-gradient-to-r from-[#2F96FF] via-[#4AA0FF] to-[#B847BC] bg-clip-text text-transparent text-center"
           initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          animate={{
+            scale: isSectionVisible ? 1 : 0.9,
+            opacity: isSectionVisible ? 1 : 0,
+          }}
           transition={{ duration: 1 }}
         >
           <span className="text-[#7F7F7F]">keyboards</span> for you
@@ -44,7 +56,10 @@ const Hero: React.FC = () => {
             key={index}
             className="flex flex-col items-center text-center space-y-4"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{
+              opacity: isSectionVisible ? 1 : 0,
+              scale: isSectionVisible ? 1 : 0.8,
+            }}
             transition={{ duration: 0.5, delay: index * 0.2 }} // Stagger animation
           >
             <img
