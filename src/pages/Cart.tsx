@@ -7,6 +7,7 @@ import Container from "../components/Container";
 import { TbTrashXFilled } from "react-icons/tb";
 import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,11 @@ const Cart: React.FC = () => {
   const isCheckoutDisabled = cartItems.some(
     (item: CartItem) => item.quantity > item.availableQuantity
   );
+
+  const handleRemoveFromCart = (itemId: string, itemName: string) => {
+    dispatch(removeFromCart(itemId));
+    toast.error(`${itemName} has been removed from your cart.`);
+  };
 
   // Page refresh warning effect
   useEffect(() => {
@@ -111,7 +117,9 @@ const Cart: React.FC = () => {
                         </button>
                         <div
                           className="ms-4 text-red-700 cursor-pointer"
-                          onClick={() => dispatch(removeFromCart(item._id))}
+                          onClick={() =>
+                            handleRemoveFromCart(item._id, item.name)
+                          }
                         >
                           <TbTrashXFilled size={28} />
                         </div>

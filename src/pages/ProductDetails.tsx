@@ -8,8 +8,7 @@ import { CartItem } from "../types";
 import { addToCart } from "../redux/features/cartSlice";
 import { RootState } from "../redux/store";
 import Container from "../components/Container";
-
-// import { addToCart } from "../redux/features/cartSlice";
+import { toast } from "sonner";
 
 const ProductDetails: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -41,6 +40,8 @@ const ProductDetails: React.FC = () => {
       return;
     }
     dispatch(addToCart({ ...product, quantity }));
+
+    toast.success(`${product.name} has been added to your cart!`);
   };
 
   useEffect(() => {
