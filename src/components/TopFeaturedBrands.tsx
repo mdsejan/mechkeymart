@@ -4,6 +4,7 @@ import logo1 from "../assets/img/1.webp";
 import logo2 from "../assets/img/2.webp";
 import logo3 from "../assets/img/3.webp";
 import logo4 from "../assets/img/4.webp";
+import { FaTag } from "react-icons/fa";
 
 const brands: Brand[] = [
   {
@@ -28,8 +29,10 @@ const TopFeaturedBrands: React.FC = () => {
   return (
     <div className="py-4 md:py-12">
       <Container>
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-start">
+        <div className="flex items-center  mb-8">
+          <FaTag className="text-green-500 w-7 h-7 mr-3" />{" "}
+          {/* New icon before the text */}
+          <h2 className="text-3xl font-normal text-gray-900 text-start">
             Top Featured Brands
           </h2>
         </div>

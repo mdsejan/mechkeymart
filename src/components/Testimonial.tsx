@@ -1,3 +1,4 @@
+import { FaComment } from "react-icons/fa";
 import Container from "./Container";
 import TestimonialCard from "./TestimonialCard";
 
@@ -36,8 +37,9 @@ const Testimonial: React.FC = () => {
   return (
     <section className="py-4 md:py-12">
       <Container>
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2 text-start">
+        <div className="flex items-center mb-2">
+          <FaComment className="text-orange-500 w-7 h-7 mr-3" />{" "}
+          <h2 className="text-3xl font-normal text-gray-900 text-start">
             Customer Reviews
           </h2>
         </div>

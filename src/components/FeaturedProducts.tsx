@@ -4,6 +4,7 @@ import { useGetProductQuery } from "../redux/api/baseApi";
 import { Product } from "../types";
 import SkelentonCard from "./SkelentonCard";
 import Rating from "./Rating";
+import { FaKeyboard } from "react-icons/fa";
 
 const FeaturedProducts: React.FC = () => {
   // const [products, setProducts] = useState<TProduct[]>([]);
@@ -15,14 +16,17 @@ const FeaturedProducts: React.FC = () => {
     return (
       <Container>
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-start">
-            Featured Products
-          </h2>
+          <div className="flex items-center">
+            <FaKeyboard className="text-blue-500 w-8 h-8 mr-3" />
+            <h2 className="text-3xl font-medium text-gray-900 mb-8 text-start">
+              Featured Products
+            </h2>
+          </div>
           <Link
             to="/products"
-            className="hidden lg:inline-block bg-white text-blue-600 py-1 px-4 rounded hover:bg-[#ECF3F7] font-bold border-2 border-blue-600"
+            className="hidden lg:inline-block bg-white hover:text-blue-600 py-1 px-5 rounded-full font-medium border-2"
           >
-            See More
+            Shop All
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-3">
@@ -38,15 +42,18 @@ const FeaturedProducts: React.FC = () => {
 
   return (
     <Container>
-      <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-start">
-          Featured Products
-        </h2>
+      <div className="flex justify-between items-center mb-10">
+        <div className="flex items-center">
+          <FaKeyboard className="text-blue-500 w-7 h-7 mr-3" />
+          <h2 className="text-3xl font-normal text-gray-900  text-start">
+            Featured Products
+          </h2>
+        </div>
         <Link
           to="/products"
-          className="hidden lg:inline-block bg-white text-blue-600 py-1 px-4 rounded hover:bg-[#ECF3F7] font-bold border-2 border-blue-600"
+          className="hidden lg:inline-block bg-white hover:text-blue-600 py-1 px-5 rounded-full font-medium border-2"
         >
-          See More
+          Shop All
         </Link>
       </div>
 
