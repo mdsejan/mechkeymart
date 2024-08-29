@@ -64,4 +64,4 @@ Start the server:
 npm run dev
 ```
 
-The server will start running at `http://localhost:5000`.
+The server will start running at `http://localhost:5173/`.
