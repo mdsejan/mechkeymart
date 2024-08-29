@@ -82,7 +82,7 @@ export const baseApi = createApi({
           url: `/product/${id}`,
         };
       },
-      invalidatesTags: ["Products"],
+      invalidatesTags: ["Products", "filterProducts", "Product"],
     }),
   }),
 });
