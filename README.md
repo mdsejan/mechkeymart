@@ -23,8 +23,7 @@ MechKeyMart is built using React, Redux, Mongoose, and Express. This e-commerce 
 - **About Us Page**: Showcases information about the company with attractive designs.
 - **Contact Us Page**: Provides contact information and encourages user feedback.
 - **UI/UX**: Emphasizes a smooth and intuitive user experience with responsive design.
-- **Bonus Features**: Includes debounced API calls, page refresh warnings, and micro-animations.
-- **Optional Features**: Stripe payment integration and pagination for the Products page.
+- **Other Features**: Includes debounced API calls, page refresh warnings, and micro-animations.
 
 ## Technology Stack
 
