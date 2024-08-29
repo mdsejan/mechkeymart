@@ -1,5 +1,9 @@
 # MechKeyMart
 
+### Live URL: &nbsp; &nbsp; [mechkeymart.netlify.app](https://mechkeymart.netlify.app/)
+
+### SERVER REPO: &nbsp; &nbsp; [github.com/mdsejan/mechkeymart-server](https://github.com/mdsejan/mechkeymart-server)
+
 ## Introduction
 
 MechKeyMart is a modern e-commerce platform dedicated to mechanical keyboards. It is designed to provide a seamless shopping experience for keyboard enthusiasts, featuring easy product browsing, detailed product pages, and a smooth cart system.
@@ -31,33 +35,34 @@ MechKeyMart is built using React, Redux, Mongoose, and Express. This e-commerce 
 
 ### Prerequisites
 
-- Node.js
-- MongoDB
-- Git
+- react (v18 or higher)
 
-### Installation Steps
+### Installation
 
-1. **Clone the Repositories**
+1. Clone the repository:
+
    ```bash
-   git clone https://github.com/mdsejan/mechkeymart.git
-   git clone https://github.com/mdsejan/mechkeymart-server.git
-
+   git clone https://github.com/mdsejan/co-work-booker.git
    ```
-2. **Set Up the Frontend**
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd mechkeymart
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+Start the server:
 
 ```bash
-    cd mechkeymart
-    npm install
-    npm run dev
-
+npm run dev
 ```
 
-3. **Set Up the Backend**
-
-```bash
-    cd mechkeymart-server
-    npm install
-    npm run dev
-
-
-```
+The server will start running at `http://localhost:5000`.
